@@ -7,7 +7,7 @@ To use this code, first compile disort_driver_mat (a fortran executable), locate
 
 Planned upgrades: 
 1) A new version of DISORT, DISORT3 is available. I hope to incorporate this soon. 
-2) IÕm also working on calling DISORT directly from Matlab or Octave, rather than making an external call to the system and using files as intermediates.
+2) I'm also working on calling DISORT directly from Matlab or Octave, rather than making an external call to the system and using files as intermediates.
 3) This code requires gaseous optical depths as input. We use the line-by-line radiative transfer model (LBLRTM; http://rtweb.aer.com/lblrtm.html) for this purpose. A github directory for a codes for running LBLRTM from MATLAB or Octave, runLBLRTM_mat, is in progress. This code is currently available on request.
 4) A Python version is under development (runDisort_py).
 5) I hope to incorporate single scattering parameter files for more realistic ice habits soon.
