@@ -3,13 +3,15 @@ runDisort_mat
 
 This code runs DISORT from MATLAB or Octave to perform radiative transfer calculations for layered model atmospheres, including absorption and scattering. Inputs include gaseous optical depths, atmospheric parameters, and cloud properties. Radiative transfer is performed using DISORT 2.0 Beta (from ftp://climate1.gsfc.nasa.gov/wiscombe/Multiple_Scatt/).This is a work in progress, and may have bugs. It is shared without guarantees of any kind. Improvements are ongoing, and we welcome feedback.
 
+To use this code, first compile disort_driver_mat (a fortran executable), located in the installation folder. Make an alias of disort_driver_mat or copy it in the directory with the Mode. In matlab, you can try out the code using “sample_run.m” in the sampleRun folder.  Make sure you add the path to the folder where “run_disort.m” is to your path and change the directories as needed in “sample_run.m.”
 
 Planned upgrades: 
-1) A new version of DISORT, DISORT3 is available. We hope to incorporate this soon. 
-2) We are also working on calling DISORT directly from Matlab or Octave, rather than making an external call to the system and using files as intermediates.
+1) A new version of DISORT, DISORT3 is available. I hope to incorporate this soon. 
+2) I’m also working on calling DISORT directly from Matlab or Octave, rather than making an external call to the system and using files as intermediates.
 3) This code requires gaseous optical depths as input. We use the line-by-line radiative transfer model (LBLRTM; http://rtweb.aer.com/lblrtm.html) for this purpose. A github directory for a codes for running LBLRTM from MATLAB or Octave, runLBLRTM_mat, is in progress. This code is currently available on request.
 4) A Python version is under development (runDisort_py).
-5) We hope to incorporate single scattering parameter files for more realistic ice habits soon.
+5) I hope to incorporate single scattering parameter files for more realistic ice habits soon.
+6) Currently on some systems the following may appear when running the code, “Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG IEEE_DENORMAL.” This is not an error but a consequence of DISORT’s operation, and I am working to suppress this message (suggestions welcome!)
 
 
 
