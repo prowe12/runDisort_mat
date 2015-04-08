@@ -28,11 +28,11 @@
 % ... Directories
 dirdisort = pwd;       % directory where output will go (for now, here)
 dirdisort(end+1)='/';  
-sspdir    = '*/runDisort_mat/inputs';
+sspdir    = '../runDisort_mat/inputs/';
 
 % ... Path needed for Octave
 if (is_octave)
-  addpath '*/runDisort_mat/octCode/'
+  addpath '../runDisort_mat/octCode/'
 end
 
 
