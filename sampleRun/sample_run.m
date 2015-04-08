@@ -184,7 +184,7 @@ end
 plot(nus,raddn,'.-')
 xlabel('wavenumber (cm^-^1)')
 ylabel('Radiance [(mW/(m^2 sr cm^-^1)]')
-legend([num2str(sceneViewingAngle) '^o')
+legend([num2str(sceneViewingAngle) '^o'])
 
 fprintf('\n Success! \n')
 
