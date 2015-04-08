@@ -26,8 +26,7 @@
 % % % % % % % %   INPUTS (replace as desired)   % % % % % % % % % % %
 
 % ... Directories
-dirdisort = pwd;       % directory where output will go (for now, here)
-dirdisort(end+1)='/';  
+dirdisort = '../runDisort_mat/';       % directory where output will go (for now, here)
 sspdir    = '../runDisort_mat/inputs/';
 
 % ... Path needed for Octave
@@ -184,7 +183,7 @@ end
 plot(nus,raddn,'.-')
 xlabel('wavenumber (cm^-^1)')
 ylabel('Radiance [(mW/(m^2 sr cm^-^1)]')
-legend([num2str(sceneViewingAngle) '^o'])
+legend([num2str(sceneAngle) '^o'])
 
 fprintf('\n Success! \n')
 

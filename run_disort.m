@@ -168,8 +168,6 @@ end
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
 % ... initialize the radiance
-%if Ndn>0; raddn = zeros(nnus,Ndn) ; else; raddn=[];
-%if Nup>0; radup = zeros(nnus,Nup) ; else; radup=[];
 raddn = zeros(nnus,Ndn) ;
 radup = zeros(nnus,Nup) ;
 rfldn = zeros(nnus,1) ;
