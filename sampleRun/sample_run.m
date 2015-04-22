@@ -72,7 +72,7 @@ location.longitude = -122.5;  % East of Greenwhich is positive
 location.altitude = 243 ;     % meters
 
 % Scene viewing angle
-sceneAngle = 180;             % degrees, 180=>looking up (dwnwllng), 0=>down
+sceneAngle = [180 0];             % degrees, 180=>looking up (dwnwllng), 0=>down
 
 % Functions of Wavenumber (vectors)
 nus    = [850; 950];
@@ -172,7 +172,7 @@ end
 
 
 % ... Run DISORT
-[raddn,radup, rfldn, flup,izm] = run_disort(nus, clrod, ...
+[rad, rfldn, flup,izm] = run_disort(nus, clrod, ...
   reff_wat, cldODvis_wat, cldlyr_wat,...
   reff_ice, cldODvis_ice, cldlyr_ice,...
   sspWat,   iTempWat, wTempWat, ...
@@ -180,7 +180,7 @@ end
   nlyr, temper, nstr, lamber, saa, umu0, umu, albedo, ...
   fbeam, delv, procNoStr, debugflag,dirdisort) ; 
 
-plot(nus,raddn,'.-')
+plot(nus,rad,'.-')
 xlabel('wavenumber (cm^-^1)')
 ylabel('Radiance [(mW/(m^2 sr cm^-^1)]')
 legend([num2str(sceneAngle) '^o'])

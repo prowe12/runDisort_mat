@@ -1,6 +1,6 @@
 
 % % % % % % % % % % % % % % % % % % % % % %
-function [raddn,radup, rfldn, flup,izm] = run_disort(nus, clrod, ...
+function [rad, rfldn, flup,izm] = run_disort(nus, clrod, ...
   reff_wat, cldODvis_wat, cldlyr_wat,...
   reff_ice, cldODvis_ice, cldlyr_ice,...
   sspWat,   iTemp_wat, wTemp_wat, ...
@@ -54,8 +54,6 @@ temis  = 0;              % top emissivity
 
 
 
-iangdn = find(umu<0) ; Ndn = length(iangdn);
-iangup = find(umu>0) ; Nup = length(iangup);
 
 
 
@@ -168,8 +166,7 @@ end
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
 % ... initialize the radiance
-raddn = zeros(nnus,Ndn) ;
-radup = zeros(nnus,Nup) ;
+rad   = zeros(nnus,numu) ;
 rfldn = zeros(nnus,1) ;
 flup  = zeros(nnus,1) ;
 
@@ -374,14 +371,11 @@ for inu = 1:length(nus)
     %error('uu less than zero');
     %end
   end
-  uudn = result(3:3+numu-1);
-  uuup = result(3+numu:3+numu+numu-1);
-  for k=1:Ndn
-    raddn(inu,k) = uudn(iangdn(k)) / (wvnumhi - wvnumlo) ;
+  uu = result(3:3+numu-1) ;
+  for k=1:numu
+    rad(inu,k) = uu(k) / (wvnumhi - wvnumlo) ;
   end
-  for k=1:Nup
-    radup(inu,k) = uuup(iangup(k)) / (wvnumhi - wvnumlo) ;
-  end
+                                                 
   rfldn(inu) = result(1) / (wvnumhi - wvnumlo) ;
   flup(inu)  = result(2) / (wvnumhi - wvnumlo) ;
   %disp (['done w/ ', num2str(inu) ' of ' num2str(length(nus))])
