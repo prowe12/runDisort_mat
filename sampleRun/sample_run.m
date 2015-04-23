@@ -187,8 +187,8 @@ end
 plot(nus,raddn,'.-',nus,radup,'x-')
 xlabel('wavenumber (cm^-^1)')
 ylabel('Radiance [(mW/(m^2 sr cm^-^1)]')
-legend([num2str(sceneAngle(1)) '^o, down'],[num2str(sceneAngle(2)) '^o, down'],...
-  [num2str(sceneAngle(1)) '^o, up'],[num2str(sceneAngle(2)) '^o, up'])
+legend([num2str(sceneAngle(1)) '^o, surface'],[num2str(sceneAngle(2)) '^o, surface'],...
+  [num2str(sceneAngle(1)) '^o, TOA'],[num2str(sceneAngle(2)) '^o, TOA'])
 
 fprintf('\n Success! \n')
 
