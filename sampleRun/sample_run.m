@@ -7,10 +7,7 @@
 % Inputs (see below)
 %
 % Outputs (will change to allow user to specify viewing angle)
-%   raddn: Downwelling radiances for 180 degrees
-%          (180 => looking straight up)
-%   radup: Upwelling radiance (not included here)
-%          (0 => looking straight down)
+%   rad:   Downwelling or upwelling radiances for viewing angle
 %   rfldn: Downward flux
 %   flup:  Upward flux
 %   izm:   index to top layer used (cuts off where od<1e-5), where 1=>top
@@ -26,12 +23,15 @@
 % % % % % % % %   INPUTS (replace as desired)   % % % % % % % % % % %
 
 % ... Directories
-dirdisort = '../runDisort_mat/';       % directory where output will go (for now, here)
-sspdir    = '../runDisort_mat/inputs/';
+%dirdisort = '../runDisort_mat/';       % directory where output will go (for now, here)
+%sspdir    = '../runDisort_mat/inputs/';
+dirdisort = '/home/vonw/radtran/runDisort_mat/';       % directory where output will go (for now, here)
+sspdir    = '/home/vonw/radtran/runDisort_mat/inputs';
 
 % ... Path needed for Octave
 if (is_octave)
-  addpath '../runDisort_mat/octCode/'
+  %addpath '../runDisort_mat/octCode/'
+  addpath '/home/vonw/radtran/runDisort_mat/octCode/'
 end
 
 

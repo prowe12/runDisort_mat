@@ -56,7 +56,6 @@ temis  = 0;              % top emissivity
 
 
 
-
 % ... qc: make sure inputs are ok
 if umu0>1; error('umu0 out of range (greater than 1'); end
 %if find(umu<-1) | find(umu>1); warning('umu out of range?'); end
@@ -382,5 +381,3 @@ for inu = 1:length(nus)
 end
 %unix(['rm -f ',outfile,' disortinput.nml']);
 end
-
-
