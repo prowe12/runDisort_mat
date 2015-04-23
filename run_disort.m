@@ -1,6 +1,6 @@
 
 % % % % % % % % % % % % % % % % % % % % % %
-function [raddn_sfc,radup_toa, rfldn_sfc, flup_toa,izm] = run_disort(nus, clrod, ...
+function [rad_sfc,rad_toa, rfldn_sfc, flup_toa,izm] = run_disort(nus, clrod, ...
   reff_wat, cldODvis_wat, cldlyr_wat,...
   reff_ice, cldODvis_ice, cldlyr_ice,...
   sspWat,   iTemp_wat, wTemp_wat, ...
@@ -164,8 +164,8 @@ end
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
 % ... initialize the radiance
-raddn_sfc = zeros(nnus,numu) ;
-radup_toa = zeros(nnus,numu) ;
+rad_sfc = zeros(nnus,numu) ;
+rad_toa = zeros(nnus,numu) ;
 rfldn_sfc = zeros(nnus,1) ;
 flup_toa  = zeros(nnus,1) ;
 
@@ -366,15 +366,15 @@ for inu = 1:length(nus)
     result = load(outfile) ;
     trfldn = result(1);
     tflup = result(2);
-    %if find(uudn<0)
+    %if find(uu_sfc<0)
     %error('uu less than zero');
     %end
   end
   
-  uudn = result(3:3+numu-1);
-  uuup = result(3+numu:3+numu+numu-1);
-  raddn_sfc(inu,:) = uudn / (wvnumhi - wvnumlo) ;
-  radup_toa(inu,:) = uuup / (wvnumhi - wvnumlo) ;
+  uu_sfc = result(3:3+numu-1);
+  uu_toa = result(3+numu:3+numu+numu-1);
+  rad_sfc(inu,:) = uu_sfc / (wvnumhi - wvnumlo) ;
+  rad_toa(inu,:) = uu_toa / (wvnumhi - wvnumlo) ;
                                                  
   rfldn_sfc(inu) = result(1) / (wvnumhi - wvnumlo) ;
   flup_toa(inu)  = result(2) / (wvnumhi - wvnumlo) ;
