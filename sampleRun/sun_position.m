@@ -89,7 +89,10 @@ function sun = sun_position(time, location)
 %               write code that  will both avoid this warning and work in future versions of 
 %               MATLAB,  see R14SP2 Release Notes'. Script should now be
 %               compliant with futher release of Matlab...
-
+%
+%   23/04/2015  This code assumes vector inputs and will produce errors and/or ignore extra
+%               elements (Penny M. Rowe - PMR, prowe@harbornet.com)
+%               Modifications made to avoid possible short-circuit behavior with |, for Octave
 
 % 1. Calculate the Julian Day, and Century. Julian Ephemeris day, century
 % and millenium are calculated using a mean delta_t of 33.184 seconds.  
@@ -169,7 +172,8 @@ else
     time = t_input;
 end
 
-if(time.month == 1 | time.month == 2)
+% Changed the following | into the short-circuit operator || (PMR 2015/04/23)
+if(time.month == 1 || time.month == 2)
     Y = time.year - 1;
     M = time.month + 12;
 else

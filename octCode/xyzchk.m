@@ -52,23 +52,24 @@ elseif nargin>=3, % xyzchk(x,y,z,...)
   [m,n] = size(z);
   if min(size(z))>1, % z is a matrix
     % Convert x,y to row and column matrices if necessary.
-    if min(size(x))==1 & min(size(y))==1,
+    % .. converted to short-circuit operator for Octave, PMR, 2015/03/01
+    if min(size(x))==1 && min(size(y))==1,
       [x,y] = meshgrid(x,y);
       % .. converted to short-circuit operator for Octave, PMR, 2015/03/01
       %if size(x,2)~=n | size(y,1)~=m,
-      if size(x,2)~=n | size(y,1)~=m,
+      if size(x,2)~=n || size(y,1)~=m,
         msg = 'The lengths of X and Y must match the size of Z.';
         return
       end
     % .. converted to short-circuit operator for Octave, PMR, 2015/03/01
     %elseif min(size(x))==1 | min(size(y))==1,
-    elseif min(size(x))==1 | min(size(y))==1,
+    elseif min(size(x))==1 || min(size(y))==1,
       msg = 'X and Y must both be vectors or both be matrices.';
       return
     else
       % .. converted to short-circuit operator for Octave, PMR, 2015/03/01
       %if any(size(x)~=size(z)) | any(size(y)~=size(z)),
-      if any(size(x)~=size(z)) | any(size(y)~=size(z)),
+      if any(size(x)~=size(z)) || any(size(y)~=size(z)),
         msg = 'Matrices X and Y must be the same size as Z.';
         return
       end
@@ -76,12 +77,12 @@ elseif nargin>=3, % xyzchk(x,y,z,...)
   else % z is a vector
     % .. converted to short-circuit operator for Octave, PMR, 2015/03/01
     %if min(size(x))~=1 | min(size(y))~=1,
-    if min(size(x))~=1 | min(size(y))~=1,
+    if min(size(x))~=1 || min(size(y))~=1,
       msg = 'X and Y must be vectors when Z is.';
       return
     % .. converted to short-circuit operator for Octave, PMR, 2015/03/01
     %elseif length(x)~=length(z) | length(y)~=length(z),
-    elseif length(x)~=length(z) | length(y)~=length(z),
+    elseif length(x)~=length(z) || length(y)~=length(z),
          msg = 'X and Y must be same length as Z.';
       return
     end
@@ -108,7 +109,8 @@ if (nargin==6)
   if isstr(arg6), % xyzchk(x,y,z,xi,yi,'map')
     xx = x(1,:); yy = y(:,1);
     dx = diff(xx); dy = diff(yy);
-    if (max(abs(diff(dx))) > eps*max(xx)) | ...
+    % .. converted to short-circuit operator for Octave, PMR, 2015/03/01
+    if (max(abs(diff(dx))) > eps*max(xx)) || ...
        (max(abs(diff(dy))) > eps*max(yy)),
       if any(dx < 0), % Flip orientation of data so x is increasing.
         x(:) = fliplr(x); y(:) = fliplr(y); z(:) = fliplr(z);
@@ -119,7 +121,8 @@ if (nargin==6)
         yy(:) = flipud(yy); dy(:) = -flipud(dy);
       end
 
-      if any(dx<=0) | any(dy<=0), 
+      % .. converted to short-circuit operator for Octave, PMR, 2015/23/01
+      if any(dx<=0) || any(dy<=0),
         msg = 'X and Y must be monotonic.';
         return
       end
@@ -153,7 +156,8 @@ end
 
 if nargin>4, % Check interpolation arguments
   % If x is a row and y is a column (or vice versa) then build xi,yi matrices.
-  if min(size(xi))==1 & min(size(yi))==1 & any(size(xi)~=size(yi))
+  % .. converted to short-circuit operator for Octave, PMR, 2015/03/01
+  if min(size(xi))==1 && min(size(yi))==1 && any(size(xi)~=size(yi))
     [xi,yi] = meshgrid(xi,yi);
   elseif any(size(xi)~= size(yi)), % Also create matrix if sizes differ
     [xi,yi] = meshgrid(xi,yi);
