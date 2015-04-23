@@ -1,6 +1,6 @@
 
 % % % % % % % % % % % % % % % % % % % % % %
-function [rad, rfldn, flup,izm] = run_disort(nus, clrod, ...
+function [raddn_sfc,radup_toa, rfldn_sfc, flup_toa,izm] = run_disort(nus, clrod, ...
   reff_wat, cldODvis_wat, cldlyr_wat,...
   reff_ice, cldODvis_ice, cldlyr_ice,...
   sspWat,   iTemp_wat, wTemp_wat, ...
@@ -50,7 +50,6 @@ temis  = 0;              % top emissivity
 %                        % sum(dtauc_tot) for downwelling (umu<0), at srfc
 %accur	   = 0.0001;     % should be between 0 and 0.01
 %header     = 0;
-
 
 
 
@@ -165,9 +164,10 @@ end
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
 % ... initialize the radiance
-rad   = zeros(nnus,numu) ;
-rfldn = zeros(nnus,1) ;
-flup  = zeros(nnus,1) ;
+raddn_sfc = zeros(nnus,numu) ;
+radup_toa = zeros(nnus,numu) ;
+rfldn_sfc = zeros(nnus,1) ;
+flup_toa  = zeros(nnus,1) ;
 
 
 % solar contribution only if umu0>0
@@ -357,7 +357,7 @@ for inu = 1:length(nus)
       % Octave
       system('./disort_driver_mat');
     else
-      % matlab
+      % Matlab
       eval('!./disort_driver_mat');
     end
                                                  
@@ -370,14 +370,17 @@ for inu = 1:length(nus)
     %error('uu less than zero');
     %end
   end
-  uu = result(3:3+numu-1) ;
-  for k=1:numu
-    rad(inu,k) = uu(k) / (wvnumhi - wvnumlo) ;
-  end
+  
+  uudn = result(3:3+numu-1);
+  uuup = result(3+numu:3+numu+numu-1);
+  raddn_sfc(inu,:) = uudn / (wvnumhi - wvnumlo) ;
+  radup_toa(inu,:) = uuup / (wvnumhi - wvnumlo) ;
                                                  
-  rfldn(inu) = result(1) / (wvnumhi - wvnumlo) ;
-  flup(inu)  = result(2) / (wvnumhi - wvnumlo) ;
+  rfldn_sfc(inu) = result(1) / (wvnumhi - wvnumlo) ;
+  flup_toa(inu)  = result(2) / (wvnumhi - wvnumlo) ;
   %disp (['done w/ ', num2str(inu) ' of ' num2str(length(nus))])
 end
 %unix(['rm -f ',outfile,' disortinput.nml']);
-end
+%end
+
+

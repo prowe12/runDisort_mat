@@ -23,15 +23,18 @@
 % % % % % % % %   INPUTS (replace as desired)   % % % % % % % % % % %
 
 % ... Directories
-%dirdisort = '../runDisort_mat/';       % directory where output will go (for now, here)
-%sspdir    = '../runDisort_mat/inputs/';
-dirdisort = '/home/vonw/radtran/runDisort_mat/';       % directory where output will go (for now, here)
-sspdir    = '/home/vonw/radtran/runDisort_mat/inputs';
+%     directory w/ DISORT & where output will go:
+dirhere   = pwd ;
+dirdisort = dirhere(1:length(dirhere)-length('sampleRun')) ;
+sspdir    = [dirdisort 'inputs/'];
+% dirdisort = '/Users/prowe/Projects/radTran/github_files/runDisort_mat/';
+% sspdir    = '/Users/prowe/Projects/radTran/github_files/runDisort_mat/inputs/';
 
 % ... Path needed for Octave
 if (is_octave)
-  %addpath '../runDisort_mat/octCode/'
-  addpath '/home/vonw/radtran/runDisort_mat/octCode/'
+  octpath = [dirdisort 'octCode/'] ;
+  addpath(octpath)
+  %addpath '/Users/prowe/Projects/radTran/github_files/runDisort_mat/octCode/'
 end
 
 
@@ -129,9 +132,10 @@ saa  = sun.azimuth ;
 umu0 = cos(sza*pi/180);
 
 % ... Cosine of scene viewing angle and SZA
-%     Note: you could have more than one, and/or both
+%     Note: you can have more than one, and/or both
 %     up and downwelling, e.g.
-%     umu    = [-1 -.5 -0.01 0.01 0.5 1];  
+%     umu    = [-1 -.5 -0.01 0.01 0.5 1];
+%     Results will be given at all angles at the surface and TOA
 umu = cos(sceneAngle*pi/180) ;  % -1=>looking up (dwnwllng), 1=>down
 
 
@@ -172,7 +176,7 @@ end
 
 
 % ... Run DISORT
-[rad, rfldn, flup,izm] = run_disort(nus, clrod, ...
+[raddn,radup, rfldn, flup,izm] = run_disort(nus, clrod, ...
   reff_wat, cldODvis_wat, cldlyr_wat,...
   reff_ice, cldODvis_ice, cldlyr_ice,...
   sspWat,   iTempWat, wTempWat, ...
@@ -180,10 +184,11 @@ end
   nlyr, temper, nstr, lamber, saa, umu0, umu, albedo, ...
   fbeam, delv, procNoStr, debugflag,dirdisort) ; 
 
-plot(nus,rad,'.-')
+plot(nus,raddn,'.-',nus,radup,'x-')
 xlabel('wavenumber (cm^-^1)')
 ylabel('Radiance [(mW/(m^2 sr cm^-^1)]')
-legend([num2str(sceneAngle) '^o'])
+legend([num2str(sceneAngle(1)) '^o, down'],[num2str(sceneAngle(2)) '^o, down'],...
+  [num2str(sceneAngle(1)) '^o, up'],[num2str(sceneAngle(2)) '^o, up'])
 
 fprintf('\n Success! \n')
 

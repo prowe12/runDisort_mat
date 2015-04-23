@@ -56,19 +56,19 @@ elseif nargin>=3, % xyzchk(x,y,z,...)
       [x,y] = meshgrid(x,y);
       % .. converted to short-circuit operator for Octave, PMR, 2015/03/01
       %if size(x,2)~=n | size(y,1)~=m,
-      if size(x,2)~=n || size(y,1)~=m,
+      if size(x,2)~=n | size(y,1)~=m,
         msg = 'The lengths of X and Y must match the size of Z.';
         return
       end
     % .. converted to short-circuit operator for Octave, PMR, 2015/03/01
     %elseif min(size(x))==1 | min(size(y))==1,
-    elseif min(size(x))==1 || min(size(y))==1,
+    elseif min(size(x))==1 | min(size(y))==1,
       msg = 'X and Y must both be vectors or both be matrices.';
       return
     else
       % .. converted to short-circuit operator for Octave, PMR, 2015/03/01
       %if any(size(x)~=size(z)) | any(size(y)~=size(z)),
-      if any(size(x)~=size(z)) || any(size(y)~=size(z)),
+      if any(size(x)~=size(z)) | any(size(y)~=size(z)),
         msg = 'Matrices X and Y must be the same size as Z.';
         return
       end
@@ -76,12 +76,12 @@ elseif nargin>=3, % xyzchk(x,y,z,...)
   else % z is a vector
     % .. converted to short-circuit operator for Octave, PMR, 2015/03/01
     %if min(size(x))~=1 | min(size(y))~=1,
-    if min(size(x))~=1 || min(size(y))~=1,
+    if min(size(x))~=1 | min(size(y))~=1,
       msg = 'X and Y must be vectors when Z is.';
       return
     % .. converted to short-circuit operator for Octave, PMR, 2015/03/01
     %elseif length(x)~=length(z) | length(y)~=length(z),
-    elseif length(x)~=length(z) || length(y)~=length(z),
+    elseif length(x)~=length(z) | length(y)~=length(z),
          msg = 'X and Y must be same length as Z.';
       return
     end

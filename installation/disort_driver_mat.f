@@ -225,7 +225,7 @@ c      ENDIF
 
 
 c   ..Output..
-c   ..Note: UU( MAXUMU, MAXULV, MAXPHI )
+c   ..Note: UU( MAXUMU, MAXULV, MAXPHI ), MAXULV hardwired to 2
       OPEN(8,FILE=OUTFILE,STATUS='unknown',FORM='FORMATTED')
       WRITE (8,*) RFLDN(1), '% RFLDN: Diffuse down flux, sfc'
       WRITE (8,*) FLUP(2), '% FLUP: Diffuse upward flux, toa'
