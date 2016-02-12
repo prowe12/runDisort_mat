@@ -3,7 +3,12 @@ runDisort_mat
 
 This code runs DISORT from MATLAB or Octave to perform radiative transfer calculations for layered model atmospheres, including absorption and scattering. Inputs include gaseous optical depths, atmospheric parameters, and cloud properties. Radiative transfer is performed using DISORT 2.0 Beta (from ftp://climate1.gsfc.nasa.gov/wiscombe/Multiple_Scatt/). This is a work in progress, and may have bugs. It is shared without guarantees of any kind. Improvements are ongoing, and we welcome feedback.
 
-To use this code, first compile disort_driver_mat (a fortran executable), located in the installation folder. Make an alias of disort_driver_mat or copy it in the directory with the Mode. In matlab, you can try out the code using "sample_run.m" in the sampleRun folder.  Make sure you add the path to the folder where "run_disort.m" is to your path and change the directories as needed in "sample_run.m."
+Installation Instructions
+1) To use this code, first copy these files to your directory. 
+2) Within the installation directory, modify the makefile as needed for the fortran compiler you have; here we use gfortan. Run "make" to compile disort_driver_mat (a fortran executable). This is the code that will call disort.
+3) Make an alias of disort_driver_mat or copy it into the main directory (where sample_run.m is) 
+4) In matlab, you can try out the code using "sample_run.m" in the sampleRun folder.  Make sure you add the path to the folder where "run_disort.m" is to your path and change the directories as needed in "sample_run.m."
+
 
 Planned upgrades: 
 1) A new version of DISORT, DISORT3 is available. I hope to incorporate this soon. 
@@ -37,16 +42,9 @@ Acknowledging use of this code (please let us know if any are missing):
 
 6) For use of the solar irradiance spectra: Kurucz, R.L., Synthetic infrared spectra, in Infrared Solar Physics, IAU Symp. 154, edited by D.M. Rabin and J.T. Jefferies, Kluwer, Acad., Norwell, MA, 1992.
 
-7) For use of cloud_2012012006_cld1.mat (used by sample_run.m), please reference Cox et al., 2015, to be submitted to ESSD. Please also see our database of atmospheric profiles and cloudy and clear sky up and downwelling radiances characteristic of the Arctic (available on request).
+7) For use of cloud_2012012006_cld1.mat (used by sample_run.m), please reference: Cox, C., Rowe, P. M., Neshyba, S., & Walden, V. P. (2016). A synthetic data set of high-spectral resolution infrared spectra for the Arctic atmosphere. Earth System Science Data Discussions, 1–29. http://doi.org/10.5194/essd-2015-40, in review for Earth System Science Data. Please also see our database of atmospheric profiles and cloudy and clear sky up and downwelling radiances characteristic of the Arctic at the Arctic Observing Network (AON) Arctic data repository (at \url{https://www.aoncadis.org/dataset/AAIRO_spectra.html}; doi:10.5065/D61J97TT).
 
 
-
-Installation Instructions
-1) Copy these files to your directory. 
-2) Within the installation directory, modify the makefile as needed for the fortran compiler you have; here we use gfortan. Run "make".
-3) A file called "disort_driver_mat” should be created. This is the code that will call disort.
-4) Move disort_driver_mat into the main directory (where sample_run.m is).
-5) Test the code by running sample_run.m. 
 
 
 A note on precision: some variables in DISORT are single precision. Sensitivity studies indicate that best accuracy is achieved when all layer optical depths in typical model atmospheres are above 10^-5. For example, for a total optical depth of 0.5 and temperatures near 240 K, our studies indicate that including a layer optical depth of 10^-6 results in round-off errors in zenith downwelling radiance of ~0.2 mW/(m2 sr cm-1), whereas omitting this layer from the calculation causes an error of only ~0.004 mW/(m2 sr cm-1). Furthermore, omitting extremely thin layers saves computational time. For this reason, the code excludes upper atmospheric layers with optical depths below 10^-5 (this is done on a wavenumber-by-wavenumber basis). If such thin layers need to be included, it is possible to compile entirely in double-precision at a computational cost probably less than 20% (see DISORT documentation). As described by Istvan Laszlo (personal communication), "To run DISORT in double-precision you should use DISORTsp.f, which is currently only available in pre-version 3 distributions, like in DISORT2.0beta. To create the double-precision version it is, however, not sufficient to simply auto-double DISORTsp.f at compile time. You would first need to change all instances of R1MACH to D1MACH. Then you should compile all files with the auto-double option, except one file: RDI1MACH.f should be compiled without this option. Finally you would need to link all compiled files to create the executable."
