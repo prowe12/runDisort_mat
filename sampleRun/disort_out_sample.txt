@@ -1,0 +1,6 @@
+  0.138789296     % RFLDN: Diffuse down flux, sfc
+  0.189484417     % FLUP: Diffuse upward flux, toa
+   4.28540781E-02 % UU: down radiance(z. ang), sfc
+   3.71142440E-02 % UU: down radiance(z. ang), sfc
+   0.00000000     % UU: up radiance(z. ang), toa
+   5.67354709E-02 % UU: up radiance(z. ang), toa

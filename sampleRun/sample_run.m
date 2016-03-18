@@ -26,9 +26,11 @@
 %     directory w/ DISORT & where output will go:
 dirhere   = pwd ;
 dirdisort = dirhere(1:length(dirhere)-length('sampleRun')) ;
-sspdir    = [dirdisort 'inputs/'];
+sspdir    = [dirdisort 'singleScatteringParameters/'];
 % dirdisort = '/Users/prowe/Projects/radTran/github_files/runDisort_mat/';
 % sspdir    = '/Users/prowe/Projects/radTran/github_files/runDisort_mat/inputs/';
+
+addpath(dirdisort)
 
 % ... Path needed for Octave
 if (is_octave)
@@ -56,15 +58,11 @@ end
 %     by variables below, while for ice we assume temperature-independent
 %     (we hope to add habits and temperature-dependent ice eventually as well).
 %
-pmomfiles_wat = {...
-  [sspdir '/liqWater_T240_S331_pmom.nc'],...
-  [sspdir '/liqWater_T253_S331_pmom.nc'],...
-  [sspdir '/liqWater_T263_S331_pmom.nc'],...
-  [sspdir '/liqWater_T300_S100_pmom.nc']};
-pmomfiles_ice = {[sspdir '/iceWater_spheres_S100_pmom.nc']};
-watTdependence = 'interpolate';  % char string
+pmomfiles_wat = {[sspdir 'pmom_water_T300_DW_S331.nc']};
+pmomfiles_ice = {[sspdir '/pmom_ice_sphere_T266_Warren_S331.nc']};
+watTdependence = 'none';  % char string
 iceTdependence = 'none';  % char string
-ssp_watTemps = [240 253 263 273]; % temp of ssp file, in K
+ssp_watTemps = [240 253 263 273 300]; % temp of ssp file, in K
 ssp_iceTemps = 273; % temp of spp file, in K
 
 
