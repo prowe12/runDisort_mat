@@ -1,7 +1,7 @@
 runDisort_mat
 ==============
 
-This code runs DISORT from MATLAB or Octave to perform radiative transfer calculations for layered model atmospheres, including absorption and scattering. Inputs include gaseous optical depths, atmospheric parameters, and cloud properties. Radiative transfer is performed using DISORT 2.0 Beta (from ftp://climate1.gsfc.nasa.gov/wiscombe/Multiple_Scatt/). This is a work in progress, and may have bugs. It is shared without guarantees of any kind. I am not maintaining this code anymore as I have switched to Python (please see runDisort_py), but I welcome feedback and will try to respond.
+This code runs DISORT from MATLAB or Octave to perform radiative transfer calculations for layered model atmospheres, including absorption and scattering by gases and clouds (aerosols are not currently included but could be added). Inputs include gaseous optical depths, atmospheric parameters, and cloud properties. Radiative transfer is performed using DISORT 2.0 Beta (from ftp://climate1.gsfc.nasa.gov/wiscombe/Multiple_Scatt/). This is a work in progress, and may have bugs. It is shared without guarantees of any kind. I am not maintaining this code anymore as I have switched to Python (please see runDisort_py), but I welcome feedback and will try to respond.
 
 Installation Instructions
 1) To use this code, first copy these files to your directory. 
