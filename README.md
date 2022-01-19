@@ -29,11 +29,11 @@ Acknowledging use of this code (please let us know if any are missing):
 
     Stamnes, K., Tsay, S.-C., Wiscombe, W., and Laszlo, I.: DISORT, a general-purpose Fortran program for discrete-ordinate-method radiative transfer in scattering and emitting layered media: Documentation of methodology, Tech. rep., Dept. of Physics and Engineering Physics, Stevens Institute of Technology, Hoboken, NJ 07030, 2000. 
 
-3) For use of the temperature-dependent single-scattering parameters of liquid water (pmom files: https://people.nwra.com/rowe/single_scatter.shtml), please reference: 
+3) Temperature-dependent single-scattering parameters of liquid water (https://people.nwra.com/rowe/single_scatter.shtml):
 
     Rowe, P.M., S. Neshyba, and V. P. Walden, Radiative consequences of low-temperature infrared refractive indices for supercooled water clouds, Atmos. Chem. Phys., 13, 11925Ð11933, 2013. www.atmos-chem-phys.net/13/11925/2013/ doi:10.5194/acp-13-11925-2013 as well as Zasetsky et al., 2005 and Wagner et al., 2005 as given within.
 
-4) For use of other single scattering parameters, please reference Rowe, P. M., Fergoda, M., and Neshyba, S. (2020). Temperature‐Dependent Optical Properties of Liquid Water From 240 to 298 K. Journal of Geophysical Research: Atmospheres, 125(17), e2020JD032624. as well as:
+4) Other single scattering parameters of liquid and ice (https://people.nwra.com/rowe/single_scatter.shtml): Please reference Rowe, P. M., Fergoda, M., and Neshyba, S. (2020). Temperature‐Dependent Optical Properties of Liquid Water From 240 to 298 K. Journal of Geophysical Research: Atmospheres, 125(17), e2020JD032624. as well as:
 - Liquid water at 300 K: Downing, H. D. and Williams, D.: Optical constants of water in the Infrared, J. Geophys. Res., 80, 1656Ð1661, 1975, as well as 
 - Ice spheres: Warren, S. G. and Brandt, R. E.: Optical constants of ice from the ultraviolet to the microwave: a revised compilation, J. Geophys. Res., 113, D14220, doi:10.1029/2007JD009744, 2008. 
 - Ice rough solid column: Yang, P., Bi, L., Baum, B. A., Liou, K. N., Kattawar, G. W., Mishchenko, M. I., and Cole, B. (2013). Spectrally Consistent Scattering, Absorption, and Polarization Properties of Atmospheric Ice Crystals at Wavelengths from 0.2 to 100 μm. J. Atmos. Sci., 70, 330–347, doi:10.1175/JAS-D-12-039.1. 
